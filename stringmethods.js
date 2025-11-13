@@ -32,5 +32,3 @@
 let text1 = "David";
 let text2 = "Johnson";
 // let result = text1 + " " + text2;
-let result = text1.concat(" ", text2);
-console.log("Concatenated String:", result);
