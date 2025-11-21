@@ -22,3 +22,18 @@ function greet() {
 
 // Calling the function
 greet();
+
+//difference between var , let and const in a table form
+/*
+| Feature          | var                     | let                     | const                   |
+|------------------|-------------------------|-------------------------|-------------------------|      
+| Scope            | Function-scoped         | Block-scoped            | Block-scoped            |
+| Redeclaration    | Allowed                 | Not allowed             | Not allowed             |
+| Redefinition     | Allowed                 | Allowed                 | Not allowed             |
+| can be initialized later | Yes                     | Yes                     | No                      |
+| Hoisting         | Yes (initialized as undefined) | Yes (not initialized)   | Yes (not initialized)   |
+*/
+
+console.log(x); //temperal dead zone
+var x;
+// temperal dead zone since x is not initialized with a value

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>html</title>
+  </head>
+  <script>
+    function abc() {
+      console.log("I am a method");
+    }
+    function mnc() {
+      console.log("I am a blur method");
+    }
+    function efg() {
+      console.log("I am executing mouse over");
+    }
+    function xyz() {
+      console.log("I am moving out from button");
+    }
+  </script>
+  <body>
+    <input type="text" name="fname" onchange="abc()" onblur="mnc()" value=" " />
+    <button onmouseover="efg()" onmouseout="xyz()">submit</button>
+  </body>
+</html>
+
+<!-- //Notes 
+onchange is executed when the value of the element is changed
+onblur is executed when the element loses focus 
+onmouseover is executed when the mouse pointer enters the element
+onmouseout is executed when the mouse pointer leaves the element
+-->

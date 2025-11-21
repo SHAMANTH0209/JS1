@@ -27,32 +27,45 @@
 // console.log(name);
 
 // --------------------function with multiple parameters------------------
-function add(a, b) {
-  return "adding " + a + "and " + b + "=" + (a + b);
-}
-let sum = add(5, 10);
-console.log(sum);
+// function add(a, b) {
+//   return "adding " + a + "and " + b + "=" + (a + b);
+// }
+// let sum = add(5, 10);
+// console.log(sum);
 
-function subtract(c, d) {
-  return "subtracting two variables = " + c - d;
-}
-let difference = subtract(15, 7);
-console.log(difference);
+// function subtract(c, d) {
+//   return "subtracting two variables = " + c - d;
+// }
+// let difference = subtract(15, 7);
+// console.log(difference);
 
-function multiply(x, y) {
-  return "mutilplying two variables = " + x * y;
-}
-let product = multiply(4, 6);
-console.log(product);
+// function multiply(x, y) {
+//   return "mutilplying two variables = " + x * y;
+// }
+// let product = multiply(4, 6);
+// console.log(product);
 
-function divide(m, n) {
-  return "dividing two variables = " + m / n;
-}
-let quotient = divide(20, 4);
-console.log(quotient);
+// function divide(m, n) {
+//   return "dividing two variables = " + m / n;
+// }
+// let quotient = divide(20, 4);
+// console.log(quotient);
 
-function modeulo(p, q) {
-  return "mod of two numbers = " + (p % q);
+// function modeulo(p, q) {
+//   return "mod of two numbers = " + (p % q);
+// }
+// let remainder = modeulo(10, 3);
+// console.log(remainder);
+
+//java program to print the possibility of a person climibing 5 steps
+function climbStairs(n) {
+  if (n === 1) {
+    return 1;
+  }
+  if (n === 2) {
+    return 2;
+  }
+  return climbStairs(n - 1) + climbStairs(n - 2);
 }
-let remainder = modeulo(10, 3);
-console.log(remainder);
+let steps = climbStairs(5);
+console.log(steps);
