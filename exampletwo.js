@@ -18,4 +18,5 @@ outer();
 
 //this is closure
 // closure definition
-// closure is a function that has access to the variables of its outer function even after the outer function has returned
+// closure is a function that has access to the variables of its outer function
+// even after the outer function has returned
