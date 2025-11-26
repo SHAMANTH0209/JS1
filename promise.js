@@ -1,0 +1,45 @@
+function fetchdata(callback) {
+  setTimeout(() => {
+    console.log("i am fetching data");
+    callback();
+  }, 4000);
+}
+
+function Arrangedata(callback) {
+  setTimeout(() => {
+    console.log("i am arranging data");
+    callback();
+  }, 3000);
+}
+
+function displaydata(callback) {
+  setTimeout(() => {
+    console.log("i am displaying data");
+    if (callback) callback();
+  }, 2000);
+}
+// Call back hell problem
+fetchdata(() => {
+  Arrangedata(() => {
+    displaydata();
+  });
+});
+
+//to over come call back hell problem we use promise
+//Promise is an object which will either resolve or reject the value aka success or failure
+let lifeline = new Promise((success, failure) => {
+  let a = 3;
+  if (a > 5) {
+    success("success");
+  } else {
+    failure("failure");
+  }
+});
+console.log(lifeline);
+lifeline
+  .then((message) => {
+    console.log(message);
+  })
+  .catch((message) => {
+    console.log(message);
+  }); // since reject throws an error we use catch

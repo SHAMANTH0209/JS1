@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>html</title>
@@ -23,9 +23,120 @@
   </body>
 </html>
 
-<!-- //Notes 
+ //Notes 
 onchange is executed when the value of the element is changed
 onblur is executed when the element loses focus 
 onmouseover is executed when the mouse pointer enters the element
 onmouseout is executed when the mouse pointer leaves the element
 -->
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Speeding system</title>
+  </head>
+  <script>
+    function Speeding() {
+      let speed = 0;
+      return {
+        accelarate: function() {
+          speed = speed + 10;
+          return speed;
+        },
+        breaks: function() {
+          speed = speed - 5;
+          return speed;
+        },
+      };
+    }
+
+    let data = Speeding();
+    let statement = "";
+    function breaks() {
+      let value = value.breaks();
+      statement = "I am at the speed of " + value;
+      document.getElementById("action").innerHTML = statement;
+    }
+    function accelarate() {
+      let value = value.accelarate();
+      statement = "I am at the speed of " + value;
+      document.getElementById("action").innerHTML = statement;
+    }
+  </script>
+  <body>
+    <button onclick="breaks()">Break</button>
+    <button onclick="accelarate()">Accelerate</button>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<!-- <html>
+  <head>
+    <title>Speeding system</title>
+  </head>
+  <script>
+    function Speeding() {
+      let speed = 0;
+      return {
+        accelerate: function () {
+          speed = speed + 10;
+          return speed;
+        },
+        brake: function () {
+          speed = speed - 5;
+          return speed;
+        },
+      };
+    }
+
+    let data = Speeding(); // object with accelerate() and brake()
+
+    function applyBrake() {
+      let value = data.brake();
+      document.getElementById("action").innerHTML =
+        "I am at the speed of " + `${value};`;
+    }
+
+    function accelerate() {
+      let value = data.accelerate();
+      document.getElementById("action").innerHTML =
+        "I am at the speed of " + `${value}`;
+    }
+  </script>
+  <body>
+    <button onclick="applyBrake()">Brake</button>
+    <button onclick="accelerate()">Accelerate</button>
+
+    <h2 id="action"></h2>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Layout</title>
+    <link rel="stylesheet" href="html.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- BIG SQUARE -->
+      <div class="big-box"></div>
+
+      <!-- THREE HORIZONTAL RECTANGLES -->
+      <div class="right-group">
+        <div class="rect"></div>
+        <div class="rect"></div>
+        <div class="rect"></div>
+      </div>
+
+      <!-- FOUR SMALL SQUARES -->
+      <div class="bottom-group">
+        <div class="small-box"></div>
+        <div class="small-box"></div>
+        <div class="small-box"></div>
+        <div class="small-box"></div>
+      </div>
+    </div>
+  </body>
+</html>
