@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise Data Display</title>
+  </head>
+  <body>
+    <h1>Asynchronous Data Loading</h1>
+    <div id="dataContainer">Loading data...</div>
+
+    <script>
+      // Function that simulates fetching data asynchronously using a Promise
+      function fetchData() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            const success = true; // Simulate success or failure
+            if (success) {
+              const data = {
+                message: "Data successfully loaded from the server!",
+                items: ["Item 1", "Item 2", "Item 3"],
+              };
+              resolve(data); // Resolve the promise with the data
+            } else {
+              reject("Failed to fetch data."); // Reject the promise with an error
+            }
+          }, 2000); // Simulate a 2-second delay
+        });
+      }
+
+      // Get the HTML element where data will be displayed
+      const dataContainer = document.getElementById("dataContainer");
+
+      // Call the fetchData function and handle the Promise
+      fetchData()
+        .then((data) => {
+          // This block executes if the promise resolves (data is fetched successfully)
+          dataContainer.innerHTML = `
+                    <h2>${data.message}</h2>
+                    <ul>
+                        ${data.items.map((item) => `<li>${item}</li>`).join("")}
+                    </ul>
+                `;
+        })
+        .catch((error) => {
+          // This block executes if the promise rejects (an error occurs)
+          dataContainer.innerHTML = `<p style="color: red;">Error: ${error}</p>`;
+        });
+    </script>
+  </body>
+</html>

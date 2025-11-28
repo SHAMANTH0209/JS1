@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rise Up Style Game</title>
+
+    <style>
+      body {
+        margin: 0;
+        background: #111;
+        overflow: hidden;
+        font-family: Arial;
+        color: white;
+        text-align: center;
+      }
+
+      #gameCanvas {
+        background: linear-gradient(#87ceeb, #1e90ff);
+        display: block;
+        margin: auto;
+        border: 3px solid #fff;
+      }
+
+      #startBtn {
+        padding: 12px 25px;
+        background: #ff4757;
+        border-radius: 5px;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: white;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+
+      #startBtn:hover {
+        background: #e84118;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="startBtn">Start Game</button>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+    <script>
+      // -------------------------------
+      // PROMISE: Load Game Assets
+      // -------------------------------
+      function loadGameAssets() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve("Assets Loaded");
+          }, 800);
+        });
+      }
+
+      // Canvas Setup
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+      const btn = document.getElementById("startBtn");
+
+      let balloon = { x: 200, y: 500, r: 25 };
+      let shield = { x: 200, y: 450, r: 40 };
+      let obstacles = [];
+      let gameRunning = false;
+      let score = 0;
+
+      // Generate random falling obstacles
+      function createObstacle() {
+        obstacles.push({
+          x: Math.random() * canvas.width,
+          y: -20,
+          r: 15 + Math.random() * 20,
+          speed: 2 + Math.random() * 3,
+        });
+      }
+
+      // Collision Detection
+      function isColliding(a, b) {
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        return dist < a.r + b.r;
+      }
+
+      // Main Game Loop
+      function gameLoop() {
+        if (!gameRunning) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw Balloon
+        ctx.beginPath();
+        ctx.fillStyle = "yellow";
+        ctx.arc(balloon.x, balloon.y, balloon.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw Shield
+        ctx.beginPath();
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 4;
+        ctx.arc(shield.x, shield.y, shield.r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Create Obstacles every 30 frames
+        if (Math.random() < 0.03) createObstacle();
+
+        // Draw & Move Obstacles
+        obstacles.forEach((o, i) => {
+          o.y += o.speed;
+
+          // Draw obstacle
+          ctx.beginPath();
+          ctx.fillStyle = "#2f3542";
+          ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Shield destroys obstacle
+          if (isColliding(o, shield)) {
+            obstacles.splice(i, 1);
+            score++;
+          }
+
+          // Balloon hit → Game Over
+          if (isColliding(o, balloon)) {
+            gameRunning = false;
+            alert("GAME OVER 😥\nScore: " + score);
+          }
+        });
+
+        requestAnimationFrame(gameLoop);
+      }
+
+      // Shield follows mouse
+      canvas.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        shield.x = e.clientX - rect.left;
+      });
+
+      // Start game onclick
+      btn.onclick = () => {
+        btn.innerText = "Loading...";
+
+        loadGameAssets().then(() => {
+          btn.style.display = "none";
+          gameRunning = true;
+          obstacles = [];
+          score = 0;
+          balloon.y = 500;
+          gameLoop();
+        });
+      };
+    </script>
+  </body>
+</html>
